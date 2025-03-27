@@ -20,9 +20,17 @@ services:
       - "27021:27017"
     volumes:
       - ./backend-submodule/database/backups/ApiExpress:/backup
+      - mongo_data:/data/db
     networks:
       - api-network
 
+  frontend:
+    build: ./Frontend-submodule/ApiExpress
+    ports:
+      - "3001:3001"
+    depends_on:
+      - api
+    
 volumes:
   mongo_data:
 
