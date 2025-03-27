@@ -1,0 +1,33 @@
+services:
+  api:
+    build: ./backend-submodule
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend-submodule/.:/app
+      - /app/node_modules
+    networks:
+      - api-network
+    env_file:
+      - ./backend-submodule/.env
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27021:27017"
+    volumes:
+      - ./backend-submodule/database/backups/ApiExpress:/backup
+    networks:
+      - api-network
+
+volumes:
+  mongo_data:
+
+networks:
+  api-network:
+    driver: bridge
+
+  
