@@ -30,6 +30,9 @@ services:
       - "3001:3000"
     depends_on:
       - api
+    volumes:
+      - ./Frontend-submodule/ApiExpress/.:/app
+      - /app/node_modules
     
 volumes:
   mongo_data:
