@@ -33,6 +33,8 @@ services:
     volumes:
       - ./Frontend-submodule/ApiExpress/.:/app
       - /app/node_modules
+    env_file:
+      - ./Frontend-submodule/ApiExpress/.env
     
 volumes:
   mongo_data:
